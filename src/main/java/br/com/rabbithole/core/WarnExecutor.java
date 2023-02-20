@@ -16,7 +16,7 @@ public class WarnExecutor {
     }
 
     public void sendWarn(String msg) {
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatString(msg));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatString("[%s] ".formatted(getPrefix()) + msg));
     }
 
     public String getPrefix() {
