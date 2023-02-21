@@ -6,7 +6,7 @@
 
     <groupId>br.com.rabbithole</groupId>
     <artifactId>WarnLib</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
