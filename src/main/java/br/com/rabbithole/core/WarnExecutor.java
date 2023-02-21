@@ -12,7 +12,7 @@ public class WarnExecutor {
     }
 
     public void sendWarn(Warn warn) {
-        Bukkit.getConsoleSender().sendMessage(StringUtils.formatString(warn.getMessage()));
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatString(warn.getMessage().formatted(getPrefix())));
     }
 
     public void sendWarn(String msg) {

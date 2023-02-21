@@ -13,7 +13,7 @@ public class WarnUtils {
         warn.sendWarn("<green>Instância de WarnLib iniciada em Projeto: "+prefix);
     }
 
-    public static WarnExecutor getWarn() {
+    public WarnExecutor getWarn() {
         return warn;
     }
 }
