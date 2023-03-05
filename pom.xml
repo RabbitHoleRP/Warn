@@ -16,13 +16,13 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>permissions</id>
-            <name>Permissions</name>
+            <id>warn</id>
+            <name>Warn</name>
             <url>https://repo.rabbithole.com.br/snapshots</url>
         </snapshotRepository>
         <repository>
-            <id>permissions</id>
-            <name>Permissions</name>
+            <id>warn</id>
+            <name>Warn</name>
             <url>https://repo.rabbithole.com.br/releases</url>
         </repository>
     </distributionManagement>
