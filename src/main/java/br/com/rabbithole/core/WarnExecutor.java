@@ -3,8 +3,12 @@ package br.com.rabbithole.core;
 import br.com.rabbithole.core.enums.Level;
 import br.com.rabbithole.core.enums.Warn;
 import br.com.rabbithole.utils.StringUtils;
+import it.unimi.dsi.fastutil.Pair;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Felipe Ros
@@ -19,11 +23,17 @@ public class WarnExecutor {
     private final @NotNull  String prefix;
 
     /**
+     * @Usage Mapa contendo as Mensagens customizadas definidas pelo Plugin
+     */
+    private final @NotNull Map<String, Pair<Level, String>> customMessages;
+
+    /**
      * @Usage Construtor da classe de execução dos Avisos.
      * @param prefix String de definição do prefixo de execução do Projeto.
      */
     public WarnExecutor(@NotNull String prefix) {
         this.prefix = prefix;
+        this.customMessages = new HashMap<>();
     }
 
     /**
@@ -61,7 +71,39 @@ public class WarnExecutor {
         Bukkit.getConsoleSender().sendMessage(StringUtils.formatString(level.getMessageFormat().formatted(this.getPrefix()) + message));
     }
 
+    /**
+     * @Usage Utilizado para adicionar uma nova mensagem a lista de predefinições.
+     * @param key Chave de identificação da Mensagem customizada.
+     * @param level Nível de prioridade da Mensagem customizada.
+     * @param message Mensagem que será salva.
+     */
+    public void addCustomWarn(@NotNull String key, @NotNull Level level, @NotNull String message) {
+        getCustomMessages().put(key, Pair.of(level, message));
+    }
+
+    /**
+     * @Usage Utilizado para enviar uma mensagem customizada predefinida.
+     * @param key Chave para encontrar a mensagem que será enviada
+     */
+    public void sendCustomWarn(@NotNull String key) {
+        Level level = getCustomMessages().get(key).left();
+        String message = getCustomMessages().get(key).right();
+        Bukkit.getConsoleSender().sendMessage(StringUtils.formatString(level.getMessageFormat().formatted(this.getPrefix()) + message));
+    }
+
+    /**
+     * @Usage utilizado para pegar o prefixo do Projeto.
+     * @return String — Prefixo Projeto.
+     */
     public @NotNull String getPrefix() {
         return prefix;
+    }
+
+    /**
+     * @Usage utilizado para pegar o mapa de mensagens customizadas predefinidas do Projeto.
+     * @return Map - Mapa de mensagens customizadas.
+     */
+    public @NotNull Map<String, Pair<Level, String>> getCustomMessages() {
+        return customMessages;
     }
 }
